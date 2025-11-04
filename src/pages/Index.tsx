@@ -80,13 +80,9 @@ const Index = () => {
           <div className="max-w-5xl mx-auto text-center space-y-8">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-full border border-purple-200/50 dark:border-purple-500/50 shadow-lg animate-bounce-in">
-              <Sparkles className="w-5 h-5 text-purple-600 dark:text-purple-400" />
               <span className="text-sm font-semibold bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
                 Powered by Advanced AI Technology
               </span>
-              <Badge variant="secondary" className="bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300">
-                Free
-              </Badge>
             </div>
 
             {/* Main Heading */}
@@ -102,7 +98,7 @@ const Index = () => {
 
             {/* Subtitle */}
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-slide-in-from-bottom-4">
-              Unlock powerful insights with AI-driven summarization and sentiment analysis. 
+              Unlock powerful insights with AI driven summarization and sentiment analysis. 
               Transform your content understanding instantly.
             </p>
 
@@ -113,27 +109,16 @@ const Index = () => {
                 className="h-14 px-8 text-lg font-semibold bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 hover:opacity-90 transition-all shadow-xl hover:shadow-2xl hover:scale-105"
                 onClick={() => document.getElementById('analyzer')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                <Rocket className="w-5 h-5 mr-2" />
                 Start Analyzing
                 <ChevronRight className="w-5 h-5 ml-2" />
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="h-14 px-8 text-lg font-semibold border-2 border-purple-200 dark:border-purple-500 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all"
-              >
-                <Star className="w-5 h-5 mr-2" />
-                See Demo
               </Button>
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 max-w-4xl mx-auto">
               {[
-                { icon: Users, value: "10K+", label: "Active Users" },
                 { icon: Clock, value: "<2s", label: "Avg Response" },
                 { icon: Award, value: "99.9%", label: "Accuracy" },
-                { icon: Zap, value: "50K+", label: "Analyses Daily" },
               ].map((stat, idx) => (
                 <div 
                   key={idx} 
@@ -173,7 +158,7 @@ const Index = () => {
               </div>
               <Badge variant="outline" className="border-purple-300 dark:border-purple-500 text-purple-700 dark:text-purple-300 px-4 py-2">
                 <Target className="w-4 h-4 mr-2" />
-                Powered by Gemini AI
+                Powered by Groq AI
               </Badge>
             </div>
           </CardHeader>
@@ -204,7 +189,7 @@ const Index = () => {
                 <div className="p-4 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-xl border border-purple-200/50 dark:border-purple-500/30">
                   <p className="text-sm text-foreground/80 flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-purple-600 dark:text-purple-400 flex-shrink-0 mt-0.5" />
-                    Generate a concise, AI-powered summary that captures the essence of your text in seconds
+                    Generate a concise AI powered summary that captures the essence of your text in seconds
                   </p>
                 </div>
               </TabsContent>
@@ -213,7 +198,7 @@ const Index = () => {
                 <div className="p-4 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl border border-blue-200/50 dark:border-blue-500/30">
                   <p className="text-sm text-foreground/80 flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
-                    Analyze emotional tone, detect sentiment polarity, and understand the mood of your content
+                    Analyze emotional tone, detect sentiment polarity and understand the mood of your content
                   </p>
                 </div>
               </TabsContent>
@@ -529,7 +514,7 @@ const Index = () => {
                   <div className="font-bold text-lg bg-gradient-to-r from-purple-600 to-cyan-600 bg-clip-text text-transparent">
                     AI Text Analyzer
                   </div>
-                  <div className="text-sm text-muted-foreground">Powered by Gemini AI</div>
+                  <div className="text-sm text-muted-foreground">Powered by Groq AI</div>
                 </div>
               </div>
               <div className="text-center md:text-right">

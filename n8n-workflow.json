@@ -1,0 +1,82 @@
+{
+  "name": "AI Text Analyzer (Groq)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "text-analyzer",
+        "responseMode": "onReceived"
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [200, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer {{$credentials.groqApi.apiKey}}"
+        },
+        "body": {
+          "model": "llama-3.3-70b-versatile",
+          "messages": [
+            {
+              "role": "user",
+              "content": "={{ $json[\"body\"][\"analysisType\"] === 'summary' ? 'Summarize this text in 2 lines:\\n' + $json[\"body\"][\"text_to_analyze\"] : 'Analyze the sentiment (Positive, Negative, or Neutral) of this text:\\n' + $json[\"body\"][\"text_to_analyze\"] }}"
+            }
+          ],
+          "max_tokens": 200
+        },
+        "options": {}
+      },
+      "name": "Groq API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "credentials": {
+        "groqApi": "Groq API"
+      },
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "result",
+              "value": "={{$json[\"choices\"][0][\"message\"][\"content\"]}}"
+            }
+          ]
+        }
+      },
+      "name": "Set Result",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [800, 300]
+    },
+    {
+      "parameters": {
+        "responseData": "allEntries",
+        "responseBody": "={{ { \"final_result\": $json[\"final_result\"] } }}"
+      },
+      "name": "Webhook Response",
+      "type": "n8n-nodes-base.webhookResponse",
+      "typeVersion": 1,
+      "position": [1100, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{ "node": "Groq API", "type": "main", "index": 0 }]]
+    },
+    "Groq API": {
+      "main": [[{ "node": "Set Result", "type": "main", "index": 0 }]]
+    },
+    "Set Result": {
+      "main": [[{ "node": "Webhook Response", "type": "main", "index": 0 }]]
+    }
+  }
+}
